@@ -12,6 +12,9 @@ module.exports = {
   theme: {
     extend: {
       visibility: ["hover", "focus"],
+      backgroundImage:{
+        background: "url('/assets/background.jpg')"
+      }
     },
   },
   content: [],
