@@ -1,13 +1,21 @@
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
+import ActiveRoute from "./ActiveRoute";
+
+
+
 
 export default function Navbar(){
+    const router = useRouter();
+console.log(router.pathname);
     return(
         <div className="flex justify-around px-10">
-            <Link href="/about" className="uppercase font-medium">Acerca</Link>
-            <Link href="/web" className="uppercase font-medium">Web</Link>
-            <Link href="/mobile" className="uppercase font-medium">Móvil</Link>
-            <Link href="/seo" className="uppercase font-medium">SEO</Link>
-            <Link href="/contact" className="uppercase font-medium">Contacto</Link>
+            
+            <ActiveRoute href = "/">Acerca</ActiveRoute> 
+            <ActiveRoute href="/web">Web</ActiveRoute>
+            <ActiveRoute href="/mobile">Móvil</ActiveRoute>
+            <ActiveRoute href="/seo">SEO</ActiveRoute>
+            <ActiveRoute href="/contact">Contacto</ActiveRoute>
         </div>
     )
 }
