@@ -1,14 +1,12 @@
 import LanguageModal from "./languageModal";
 import Navbar from "./navbar";
+import SideBar from "./sideBar";
 
 export default function Layout({ children }) {
   return (
     <div className="flex h-screen bg-background bg-cover">
-      <div className="w-4/6 bg-white/60">
-        <h1 className="text-xl">PALLADDIN</h1>
-        <h3>Dev</h3>
-      </div>
-
+     
+<SideBar/>
       <div className="flex flex-col w-full py-10 justify-between text-white bg-black/40">
         <Navbar />
         <main>{children}</main>

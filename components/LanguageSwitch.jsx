@@ -15,12 +15,14 @@ export default function LanguageSwitch({}) {
   };
 
   return (
-    <ol>
+    <ol className="mt-1">
       <li
         className={
-          languageEnglish == true
+          (languageEnglish == true
             ? "cursor-pointer"
-            : "border-amber-400 border-b-2 "
+            : "border-amber-400 border-b-2") +
+          " " +
+          "mb-1"
         }
         onClick={() => {
           languageEnglish == true ? LanguageChange() : "";
@@ -31,9 +33,11 @@ export default function LanguageSwitch({}) {
       </li>
       <li
         className={
-          languageEnglish == false
-            ? "cursor-pointer "
-            : "border-amber-400 border-b-2"
+          (languageEnglish == false
+            ? "cursor-pointer"
+            : "border-amber-400 border-b-2") +
+          " " +
+          "mb-1"
         }
         onClick={() => {
           languageEnglish == false ? LanguageChange() : "";
