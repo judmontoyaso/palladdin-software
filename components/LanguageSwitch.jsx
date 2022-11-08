@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { useContext, createContext } from "react";
 import { useEnglish, EnglishContext } from "./English";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 export default function LanguageSwitch({}) {
-  const [languageEnglish, setLanguageEnglish] = useState();
   const [context, setContext] = useEnglish();
+  const [languageEnglish, setLanguageEnglish] = useState(!context);
 
   const LanguageChange = () => {
     setLanguageEnglish(!languageEnglish);
@@ -16,18 +17,26 @@ export default function LanguageSwitch({}) {
   return (
     <ol>
       <li
-        className="cursor-pointer"
+        className={
+          languageEnglish == true
+            ? "cursor-pointer"
+            : "border-amber-400 border-b-2 "
+        }
         onClick={() => {
-          languageEnglish ? LanguageChange() : "";
+          languageEnglish == true ? LanguageChange() : "";
         }}
       >
         {" "}
         Español
       </li>
       <li
-        className="cursor-pointer"
+        className={
+          languageEnglish == false
+            ? "cursor-pointer "
+            : "border-amber-400 border-b-2"
+        }
         onClick={() => {
-          !languageEnglish ? LanguageChange() : "";
+          languageEnglish == false ? LanguageChange() : "";
         }}
       >
         {" "}
