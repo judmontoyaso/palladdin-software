@@ -11,8 +11,12 @@ export default function Navbar() {
   return (
     <div className="flex justify-around px-10">
       <ActiveRoute href="/">{english ? "Acerca" : "About"}</ActiveRoute>
-      <ActiveRoute href="/web">Web</ActiveRoute>
-      <ActiveRoute href="/mobile">Móvil</ActiveRoute>
+      <ActiveRoute href="/web">
+        {english ? "Diseño web" : "Web design"}
+      </ActiveRoute>
+      <ActiveRoute href="/mobile">
+        {english ? "Aplicaciones móviles" : "Mobile apps"}
+      </ActiveRoute>
       <ActiveRoute href="/seo">SEO</ActiveRoute>
       <ActiveRoute href="/contact">
         {" "}
