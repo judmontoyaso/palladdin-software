@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  mode: "jit",
+  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   content: [
     "./components/**/*.{html,.js}",
     "./pages/**/*.{html,.js,.tsx}",
@@ -12,9 +12,10 @@ module.exports = {
   theme: {
     extend: {
       visibility: ["hover", "focus"],
-      backgroundImage:{
-        background: "url('/assets/background.jpg')"
-      }
+      backgroundImage: {
+        background: "url('/assets/background.jpg')",
+      },
+    
     },
   },
   content: [],
