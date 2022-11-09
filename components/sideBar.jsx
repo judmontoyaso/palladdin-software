@@ -5,27 +5,41 @@ export default function SideBar() {
   const ruta = useRouter();
   const [english, setEnglish] = useEnglish();
 
+  let section = ""
+  
+  const rute = ruta.pathname
+  
+  switch (rute) {
+
+    case "/":
+      section = "Dev"
+      break;
+
+    case "/web":
+      section = english ? "Diseño web" : "Web design"
+      break;
+
+    case "/mobile":
+      section = english ? "Aplicaciones móviles" : "Mobile apps"
+      break;
+
+    case "/seo":
+      section = "SEO"
+      break;
+
+    case "/contact":
+      section = english ? "Contacto" : "Contact"
+      break;
+      
+    default:
+      break;
+  }
+
   return (
     <div className="w-4/6 bg-white/60 flex flex-col justify-center align-middle items-center">
       <h1 className="text-xl">PALLADDIN</h1>
       <h3>
-        {ruta.pathname == "/"
-          ? "Dev"
-          : ruta.pathname == "/web"
-          ? english
-            ? "Diseño web"
-            : "Web design"
-          : ruta.pathname == "/mobile"
-          ? english
-            ? "Aplicaciones móviles"
-            : "Mobile apps"
-          : ruta.pathname == "/seo"
-          ? "SEO"
-          : ruta.pathname == "/contact"
-          ? english
-            ? "Contacto"
-            : "Contact"
-          : ""}
+        {section}
       </h3>
     </div>
   );
