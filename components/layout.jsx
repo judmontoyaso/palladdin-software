@@ -12,7 +12,7 @@ const poppins = Poppins({
 export default function Layout({ children }) {
   return (
     <div className={poppins.className}>
-      <div className="flex h-fit sm:h-screen bg-background bg-cover">
+      <div className="flex h-screen bg-background bg-cover">
         <SideBar />
         <div className="flex flex-col w-full py-10 justify-between text-white bg-black/50">
           <Navbar />
