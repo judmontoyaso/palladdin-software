@@ -1,5 +1,8 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEnglish } from "./English";
+
+import logo from '../public/assets/logo.png'
 
 export default function SideBar() {
   const ruta = useRouter();
@@ -36,9 +39,16 @@ export default function SideBar() {
   }
 
   return (
-    <div className="w-4/6 bg-white/60 flex flex-col justify-center align-middle items-center">
-      <h1 className="text-xl">PALLADDIN</h1>
-      <h3>
+    <div className="w-4/6 bg-white/60 flex flex-col justify-evenly items-center">
+
+      <Image
+        src={logo}
+        alt="PalladinDev Logo"
+      />
+
+      {/* <h1 className="text-xl">PALLADDIN</h1> */}
+      
+      <h3 className="text-2xl">
         {section}
       </h3>
     </div>

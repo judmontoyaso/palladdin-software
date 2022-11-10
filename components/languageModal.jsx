@@ -18,9 +18,9 @@ export default function LanguageModal({}) {
       {" "}
       <div ref={ref} className="flex flex-col">
         {language && (
-          <div className="border p-2 mb-2 bg-white/60 text-black pt-1 -translate-y-4 absolute bottom-16 right-5">
+          <div className="border py-2 px-4 mb-2 h-fit bg-white/70 text-black pt-1 -translate-y-4 absolute bottom-16 right-5">
             {" "}
-            <span className="text-lg ">Language</span>
+            <span className="text-lg">Language</span>
             <LanguageSwitch />
           </div>
         )}

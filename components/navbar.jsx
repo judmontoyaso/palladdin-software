@@ -19,7 +19,6 @@ export default function Navbar() {
       </ActiveRoute>
       <ActiveRoute href="/seo">SEO</ActiveRoute>
       <ActiveRoute href="/contact">
-        {" "}
         {english ? "Contacto" : "Contact"}
       </ActiveRoute>
     </div>

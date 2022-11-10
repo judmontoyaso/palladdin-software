@@ -19,7 +19,7 @@ export default function LanguageSwitch({}) {
       <li
         className={
           (languageEnglish == true
-            ? "cursor-pointer"
+            ? "cursor-pointer text-black/80"
             : "border-amber-400 border-b-2") +
           " " +
           "mb-1"
@@ -34,7 +34,7 @@ export default function LanguageSwitch({}) {
       <li
         className={
           (languageEnglish == false
-            ? "cursor-pointer"
+            ? "cursor-pointer text-black/80"
             : "border-amber-400 border-b-2") +
           " " +
           "mb-1"
