@@ -1,24 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   content: [
-    "./components/**/*.{html,.js}",
-    "./pages/**/*.{html,.js,.tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
     "./index.tsx",
   ],
 
-  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       visibility: ["hover", "focus"],
       backgroundImage: {
         background: "url('/assets/background.jpg')",
       },
-    
     },
   },
-  content: [],
 
   plugins: [],
 };

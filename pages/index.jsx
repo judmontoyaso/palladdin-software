@@ -5,7 +5,6 @@ import { useEnglish } from '../components/English';
 export default function Home() {
   const [english, setEnglish] = useEnglish();
 
-
   return (
     <div className='h-fit flex flex-col items-center'>
 
@@ -17,7 +16,7 @@ export default function Home() {
 
       <div className='py-8 w-4/6'>
 
-        <h1 className='text-3xl mb-12'>
+        <h1 className='text-3xl mb-12 '>
           {
             english
                 ? 'ACERCA DE PALLADDIN' 
