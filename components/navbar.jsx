@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <>
       <button
-        className="float-left pr-3 pl-3 pt-1  hover:text-gray-600 rounded-sm lg:hidden text-white ml-auto outline-none justify-end   hover:text-xl fixed"
+        className="float-left top-5 pr-3 pl-3 pt-1  hover:text-gray-600 rounded-sm lg:hidden text-white ml-auto outline-none justify-end   hover:text-xl fixed"
         onClick={handleClick}
       >
         {!menuButton ? (
@@ -31,7 +31,7 @@ export default function Navbar() {
 
       <div
         className={`${
-          menuButton ? "block ml-10 absolute" : "hidden"
+          menuButton ? "block ml-10 top-4 fixed" : "hidden"
         } lg:visible flex flex-col lg:flex-row justify-around mr-10 lg:flex lg:border-none border  sm:p-7 md:p-7 bg-white/90 lg:bg-transparent lg:text-white text-black lg:relative`}
       >
         <ActiveRoute href="/">{english ? "Acerca" : "About"}</ActiveRoute>

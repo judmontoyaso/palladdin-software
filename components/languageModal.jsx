@@ -16,9 +16,12 @@ export default function LanguageModal({}) {
   return (
     <>
       {" "}
-      <div ref={ref} className="flex flex-col">
+      <div
+        ref={ref}
+        className="flex flex-col top-5 fixed sm:bottom-10 sm:top-auto"
+      >
         {language && (
-          <div className="border py-2 px-4 mb-2 h-fit bg-white/70 text-black pt-1 -translate-y-4 absolute bottom-16 right-5">
+          <div className="border py-2 px-4 mb-2 h-fit bg-white/70 text-black pt-1 -translate-y-4 fixed top-20 sm:bottom-16 sm:top-auto right-5">
             {" "}
             <span className="text-lg">Language</span>
             <LanguageSwitch />
@@ -26,7 +29,9 @@ export default function LanguageModal({}) {
         )}
 
         <FontAwesomeIcon
-          className={`cursor-pointer px-10 ${language ? 'text-white/80': ''} transition hover:text-white/80`}
+          className={`cursor-pointer px-10 ${
+            language ? "text-white/80" : ""
+          } transition hover:text-white/80`}
           icon={faGlobe}
           size={"2xl"}
           onClick={() => Language()}
