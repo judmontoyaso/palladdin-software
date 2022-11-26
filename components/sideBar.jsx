@@ -38,7 +38,7 @@ export default function SideBar() {
   }
 
   return (
-    <div className="lg:w-2/5 lg:h-screen bg-white/60 flex flex-col justify-evenly items-center">
+    <div className="lg:w-2/5  bg-white/60 flex flex-col justify-evenly items-center">
       <Image src={logo} alt="PalladinDev Logo" />
 
       {/* <h1 className="text-xl">PALLADDIN</h1> */}

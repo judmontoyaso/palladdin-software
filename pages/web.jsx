@@ -36,7 +36,7 @@ export default function Web() {
           }
         </p>
 
-        <div className='w-full mt-24 flex justify-evenly'>
+        <div className='w-full mt-16  flex justify-evenly'>
           <div className='flex justify-center items-center'>
             <Image 
               src={reacLogo}

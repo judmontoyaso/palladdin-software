@@ -12,9 +12,9 @@ const poppins = Poppins({
 export default function Layout({ children }) {
   return (
     <div className={poppins.className}>
-      <div className="flex flex-col lg:flex-row grid-rows-2 bg-background bg-cover">
+      <div className="flex flex-col lg:flex-row grid-rows-2 bg-background bg-cover h-screen">
         <SideBar />
-        <div className="flex lg:w-4/5 flex-col py-10 justify-between text-white bg-black/50">
+        <div className="flex lg:w-4/5 h-screen flex-col py-10 justify-between text-white bg-black/50">
           <Navbar />
           <main>{children}</main>
           <div className="flex columns-1 justify-end">

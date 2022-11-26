@@ -32,7 +32,7 @@ export default function Home() {
           }
         </p>
 
-        <div className='w-full mt-24 flex justify-center'>
+        <div className='w-full mt-24 mb-8 flex justify-center'>
             <Link href="/contact" className='py-3 px-12 border-2 bg-white/20 border-amber-400 text-amber-400 transition hover:bg-white/40'>
               {
                 english
