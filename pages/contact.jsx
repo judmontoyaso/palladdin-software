@@ -52,7 +52,7 @@ export default function Contact() {
 
       <ToastContainer />
 
-      <h1 className="text-3xl my-10">{english ? "Hablemos" : "Let's talk"}</h1>
+      <h1 className="text-3xl mt-8 mb-4">{english ? "Hablemos" : "Let's talk"}</h1>
 
       <div className="w-2/4 text-black">
         <form onSubmit={formik.handleSubmit} className="flex flex-col">
