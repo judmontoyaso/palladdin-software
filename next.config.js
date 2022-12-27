@@ -4,4 +4,13 @@ const nextConfig = {
   swcMinify: true,
 }
 
-module.exports = nextConfig
+module.exports = {
+    async rewrites() {
+        return [
+          {
+            source: '/:path*',
+            destination: 'https://api.nodemailer.com/:path*',
+          },
+        ]
+      },
+  };

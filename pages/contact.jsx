@@ -4,6 +4,12 @@ import { useEnglish } from "../components/English";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
+import nodemailer from 'nodemailer';
+import 'setimmediate'
+
+if (!global.setImmediate) {
+  global.setImmediate = setTimeout
+}
 
 export default function Contact() {
   const [english, setEnglish] = useEnglish();
@@ -20,6 +26,29 @@ export default function Contact() {
     email: Yup.string().email("Invalid email").required("Required"),
   });
 
+  const sendEmail = async (info) => {
+      let testAccount = await nodemailer.createTestAccount();
+
+      let transporter = nodemailer.createTransport({
+              host: "smtp.ethereal.email",
+              port: 587,
+              secure: false, // true for 465, false for other ports
+              auth: {
+                user: testAccount.user, // generated ethereal user
+                pass: testAccount.pass, // generated ethereal password
+              },
+      });
+
+      let response = await transporter.sendMail({
+        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        to: info.email, // list of receivers
+        subject: `Hello ${ info.name } ✔`, // Subject line
+        text: `The message: ${ info.message }`, // plain text body
+        html: `<b>The message: ${ info.message }</b>`, // html body
+      });
+
+  }
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -27,8 +56,8 @@ export default function Contact() {
       message: "",
     },
     validationSchema: ContactUsSchema,
-    onSubmit: (values) => {
-      toast.success("🦄 Tu mensaje se ha enviado!", {
+    onSubmit: async (values) => {
+  /*     toast.success("Tu mensaje se ha enviado!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -37,8 +66,12 @@ export default function Contact() {
         draggable: true,
         progress: undefined,
         theme: "light",
-      });
-      alert(JSON.stringify(values, null, 2));
+      }); */
+
+      console.log(values)
+
+      const email = await sendEmail(values)
+
     },
   });
 
@@ -63,7 +96,7 @@ export default function Contact() {
             type="text"
             onChange={formik.handleChange}
             value={formik.values.name}
-            className={`h-10 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 mt-3 px-2 rounded-sm${
+            className={`h-10 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 mt-3 px-2 rounded-sm ${
               formik.touched.name && formik.errors.name
                 ? "border-red-400 border-2"
                 : ""
@@ -97,7 +130,7 @@ export default function Contact() {
             type="message"
             onChange={formik.handleChange}
             value={formik.values.message}
-            className={`2xl:h-48 h-40 outline-none mt-3 p-2  focus:border-amber-400 focus:ring-1 focus:ring-amber-400 resize-none rounded-sm${
+            className={`2xl:h-48 h-40 outline-none mt-3 p-2  focus:border-amber-400 focus:ring-1 focus:ring-amber-400 resize-none rounded-sm ${
               formik.touched.message && formik.errors.message
                 ? "border-red-400 border-2"
                 : ""
