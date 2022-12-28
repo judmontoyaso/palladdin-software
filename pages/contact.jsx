@@ -4,19 +4,14 @@ import { useEnglish } from "../components/English";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import nodemailer from 'nodemailer';
-import 'setimmediate'
-
-if (!global.setImmediate) {
-  global.setImmediate = setTimeout
-}
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [english, setEnglish] = useEnglish();
 
   const ContactUsSchema = Yup.object().shape({
     name: Yup.string()
-      .min(10, "Too Short!")
+      .min(7, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
     message: Yup.string()
@@ -27,27 +22,55 @@ export default function Contact() {
   });
 
   const sendEmail = async (info) => {
-      let testAccount = await nodemailer.createTestAccount();
+    const serviceId = 'service_etxn5b9'
+    const templateId = 'template_7d86vul'
+    const publicKey = '_DHatQn4i33WKX-Up'
 
-      let transporter = nodemailer.createTransport({
-              host: "smtp.ethereal.email",
-              port: 587,
-              secure: false, // true for 465, false for other ports
-              auth: {
-                user: testAccount.user, // generated ethereal user
-                pass: testAccount.pass, // generated ethereal password
-              },
-      });
-
-      let response = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: info.email, // list of receivers
-        subject: `Hello ${ info.name } ✔`, // Subject line
-        text: `The message: ${ info.message }`, // plain text body
-        html: `<b>The message: ${ info.message }</b>`, // html body
-      });
-
+    try
+    {
+      const respEmail = await emailjs.send(serviceId, templateId, info, publicKey)
+      return { respEmail }
+    }
+    catch(err)
+    {
+      console.error(err);
+      return { respEmail: { status: 400 } }
+    }
   }
+
+  const onSubmit = async (values, { resetForm }) => {
+
+      const { respEmail } = await sendEmail(values)
+
+      if ( respEmail.status === 200 )
+      {
+        toast.success("Tu mensaje se ha enviado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+
+        resetForm()
+      }
+      else
+      {
+        toast.error("Tu mensaje no se ha enviado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
 
   const formik = useFormik({
     initialValues: {
@@ -56,23 +79,7 @@ export default function Contact() {
       message: "",
     },
     validationSchema: ContactUsSchema,
-    onSubmit: async (values) => {
-  /*     toast.success("Tu mensaje se ha enviado!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      }); */
-
-      console.log(values)
-
-      const email = await sendEmail(values)
-
-    },
+    onSubmit
   });
 
   return (
