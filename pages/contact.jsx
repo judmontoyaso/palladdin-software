@@ -5,9 +5,12 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import emailjs from '@emailjs/browser';
+import { useState } from "react";
+import ReactLoading from 'react-loading';
 
 export default function Contact() {
   const [english, setEnglish] = useEnglish();
+  const [isLoading, setIsLoading] = useState(false)
 
   const ContactUsSchema = Yup.object().shape({
     name: Yup.string()
@@ -40,11 +43,13 @@ export default function Contact() {
 
   const onSubmit = async (values, { resetForm }) => {
 
+      setIsLoading(!isLoading)
+
       const { respEmail } = await sendEmail(values)
 
       if ( respEmail.status === 200 )
       {
-        toast.success("Tu mensaje se ha enviado!", {
+        toast.success(`${english ? 'Mensaje enviado correctamente' : 'Message sent successfully'}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -55,11 +60,12 @@ export default function Contact() {
           theme: "light",
         });
 
+        setIsLoading(false)
         resetForm()
       }
       else
       {
-        toast.error("Tu mensaje no se ha enviado!", {
+        toast.error(`${english ? 'Mensaje no enviado' : 'Message not sent'}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -69,6 +75,8 @@ export default function Contact() {
           progress: undefined,
           theme: "light",
         });
+
+        setIsLoading(false)
       }
     }
 
@@ -114,7 +122,7 @@ export default function Contact() {
           )}
 
           <input
-            placeholder={english ? "Correo electrónico " : "email"}
+            placeholder={english ? "Correo electrónico " : "Email"}
             id="email"
             name="email"
             type="text"
@@ -149,9 +157,14 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="mt-3 py-3 px-12 border-2 bg-white/20 border-amber-400 text-amber-400 transition hover:bg-white/40"
+            className="mt-3 py-3 px-12 border-2 bg-white/20 border-amber-400 text-amber-400 transition hover:bg-white/40 flex justify-center"
+            disabled={isLoading}
           >
-            {english ? "Enviar" : "Send"}
+            {
+              isLoading 
+                      ? <ReactLoading type={'spin'} color={'#FBBF24'} height={25} width={25} /> 
+                      : english ? "Enviar" : "Send"
+            }
           </button>
         </form>
       </div>
