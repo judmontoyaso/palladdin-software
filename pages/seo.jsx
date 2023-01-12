@@ -9,7 +9,9 @@ export default function SEO() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
+<div>
+Ofrecemos servicios de SEO para ayudar a mejorar la visibilidad y el ranking de su sitio web en los motores de búsqueda. Nuestro equipo de especialistas en SEO utiliza técnicas de optimización de contenido y enlaces para aumentar el tráfico orgánico a su sitio. También realizamos un análisis detallado de su sitio y su competencia para identificar oportunidades de mejora y aumentar su visibilidad en los resultados de búsqueda. Trabajamos con usted para desarrollar una estrategia de SEO personalizada que se adapte a sus objetivos comerciales específicos. ¡Contáctanos hoy para obtener más información sobre cómo podemos ayudarte a mejorar tu posicionamiento en los motores de búsqueda!
+  </div>
     </div>
   )
 }
