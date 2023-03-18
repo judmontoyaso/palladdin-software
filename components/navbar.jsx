@@ -10,7 +10,6 @@ export default function Navbar() {
   const [english, setEnglish] = useEnglish();
 
   const router = useRouter();
-  console.log(router.pathname);
   const [menuButton, setMenuButton] = useState(false);
   const handleClick = () => {
     setMenuButton(!menuButton);

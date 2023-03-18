@@ -4,13 +4,17 @@ import { useEnglish } from "../components/English";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
+import emailjs from '@emailjs/browser';
+import { useState } from "react";
+import ReactLoading from 'react-loading';
 
 export default function Contact() {
   const [english, setEnglish] = useEnglish();
+  const [isLoading, setIsLoading] = useState(false)
 
   const ContactUsSchema = Yup.object().shape({
     name: Yup.string()
-      .min(10, "Too Short!")
+      .min(7, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
     message: Yup.string()
@@ -20,6 +24,62 @@ export default function Contact() {
     email: Yup.string().email("Invalid email").required("Required"),
   });
 
+  const sendEmail = async (info) => {
+    const serviceId = 'service_etxn5b9'
+    const templateId = 'template_7d86vul'
+    const publicKey = '_DHatQn4i33WKX-Up'
+
+    try
+    {
+      const respEmail = await emailjs.send(serviceId, templateId, info, publicKey)
+      return { respEmail }
+    }
+    catch(err)
+    {
+      console.error(err);
+      return { respEmail: { status: 400 } }
+    }
+  }
+
+  const onSubmit = async (values, { resetForm }) => {
+
+      setIsLoading(!isLoading)
+
+      const { respEmail } = await sendEmail(values)
+
+      if ( respEmail.status === 200 )
+      {
+        toast.success(`${english ? 'Mensaje enviado correctamente' : 'Message sent successfully'}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+
+        setIsLoading(false)
+        resetForm()
+      }
+      else
+      {
+        toast.error(`${english ? 'Mensaje no enviado' : 'Message not sent'}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+
+        setIsLoading(false)
+      }
+    }
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -27,19 +87,7 @@ export default function Contact() {
       message: "",
     },
     validationSchema: ContactUsSchema,
-    onSubmit: (values) => {
-      toast.success("🦄 Tu mensaje se ha enviado!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit
   });
 
   return (
@@ -74,7 +122,7 @@ export default function Contact() {
           )}
 
           <input
-            placeholder={english ? "Correo electrónico " : "email"}
+            placeholder={english ? "Correo electrónico " : "Email"}
             id="email"
             name="email"
             type="text"
@@ -109,9 +157,14 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="mt-3 py-3 px-12 border-2 bg-white/20 border-amber-400 text-amber-400 transition hover:bg-white/40"
+            className="mt-3 py-3 px-12 border-2 bg-white/20 border-amber-400 text-amber-400 transition hover:bg-white/40 flex justify-center"
+            disabled={isLoading}
           >
-            {english ? "Enviar" : "Send"}
+            {
+              isLoading 
+                      ? <ReactLoading type={'spin'} color={'#FBBF24'} height={25} width={25} /> 
+                      : english ? "Enviar" : "Send"
+            }
           </button>
         </form>
       </div>
