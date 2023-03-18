@@ -2,6 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image';
 import { useEnglish } from '../components/English';
 
+import ImageAnimation from '../components/ImageAnimation'
+
+
+import portatilPhoto from '../public/assets/portatil.png'
+
 import reacLogo from '../public/assets/react.png'
 import netLogo from '../public/assets/net.png'
 import nextLogo from '../public/assets/next.png'
@@ -20,51 +25,27 @@ export default function Web() {
 
       <div className='py-8 w-4/6'>
 
-        <h1 className='text-3xl mb-12 '>
-          {
-            english
-                ? 'DESARROLLO WEB' 
-                : 'WEB DEVELOPMENT'
-          }
-        </h1>
+        <div className='mb-40'>
+          <h1 className='text-3xl mb-12 '>
+            {
+              english
+                  ? 'DESARROLLO WEB' 
+                  : 'WEB DEVELOPMENT'
+            }
+          </h1>
 
-        <p className='text-xl'>
-          {
-            english
-                ? 'Enfocado en maximizar la experiencia del cliente y la facilidad de uso a través de la implementación de tecnologías líderes en la industria que nos permiten crear y mantener aplicaciones personalizadas.'
-                : 'Focused on maximizing customer experience and ease of use through the implementation of industry-leading technologies that allow us to create and maintain custom applications.' 
-          }
-        </p>
+          <p className='text-xl'>
+            {
+              english
+                  ? 'Enfocado en maximizar la experiencia del cliente y la facilidad de uso a través de la implementación de tecnologías líderes en la industria que nos permiten crear y mantener aplicaciones personalizadas.'
+                  : 'Focused on maximizing customer experience and ease of use through the implementation of industry-leading technologies that allow us to create and maintain custom applications.' 
+            }
+          </p>
+        </div>
 
-        <div className='w-full mt-16  flex justify-evenly'>
-          <div className='flex justify-center items-center'>
-            <Image 
-              src={reacLogo}
-              alt='Logo React'
-              width={130}
-            />
-          </div>
-          <div className='flex justify-center items-center'>
-            <Image 
-              src={netLogo}
-              alt='Logo .NET'
-              width={130}
-            />
-          </div>
-          <div className='flex justify-center items-center'>
-            <Image 
-              src={nextLogo}
-              alt='Logo Next JS'
-              width={130}
-            />
-          </div>
-          <div className='flex justify-center items-center'>
-            <Image 
-              src={mongoLogo}
-              alt='Logo MongoDB'
-              width={180}
-            />
-          </div>
+
+        <div className='h-1/5 fixed bottom-0 left-0 w-full'>
+          <ImageAnimation image={portatilPhoto} alt={'Portatil'} bottom={0} right={0} width={500} />
         </div>
 
       </div>
