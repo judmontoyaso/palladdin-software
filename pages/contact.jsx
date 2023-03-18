@@ -63,9 +63,9 @@ export default function Contact() {
             type="text"
             onChange={formik.handleChange}
             value={formik.values.name}
-            className={`h-10 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 mt-3 px-2 rounded-sm${
+            className={`h-10 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 mt-3 px-2 rounded-sm ${
               formik.touched.name && formik.errors.name
-                ? "border-red-400 border-2"
+                ? "border-2 border-red-400 "
                 : ""
             }`}
           />
@@ -97,7 +97,7 @@ export default function Contact() {
             type="message"
             onChange={formik.handleChange}
             value={formik.values.message}
-            className={`2xl:h-48 h-40 outline-none mt-3 p-2  focus:border-amber-400 focus:ring-1 focus:ring-amber-400 resize-none rounded-sm${
+            className={`2xl:h-48 h-40 outline-none mt-3 p-2  focus:border-amber-400 focus:ring-1 focus:ring-amber-400 resize-none rounded-sm ${
               formik.touched.message && formik.errors.message
                 ? "border-red-400 border-2"
                 : ""
